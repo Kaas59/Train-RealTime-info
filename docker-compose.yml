@@ -1,0 +1,30 @@
+version: '3'
+services:
+  train-python:
+    restart: always
+    build: .
+    env_file: .env
+    container_name: 'train-python'
+    working_dir: '/root/'
+    tty: true
+    volumes:
+      - .:/root
+    links:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: 'train-mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: train
+      MYSQL_USER: train-user
+      MYSQL_PASSWORD: train-user
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql:/etc/mysql/conf.d/my.cnf
+      - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
