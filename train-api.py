@@ -31,7 +31,7 @@ def main():
     res = api_request()
     mysql_insert(engine, res)
     value += 1
-    time.sleep(10)
+    time.sleep(60)
 
 if __name__ == '__main__':
   main()
