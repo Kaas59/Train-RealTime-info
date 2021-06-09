@@ -17,6 +17,7 @@ create table IF not exists train_log(
     odpt_to_station VARCHAR(255) ,
     odpt_from_station VARCHAR(255) ,
     odpt_rail_direction VARCHAR(255) ,
+    odpt_car_composition VARCHAR(255),
     odpt_destination_station VARCHAR(255) ,
     created_at Datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at Datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
